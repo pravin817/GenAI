@@ -1,0 +1,5 @@
+package com.ptech.todo.service;
+
+public interface ITodoService {
+
+}

@@ -1,0 +1,12 @@
+package com.ptech.todo.dto.request;
+
+import jakarta.validation.constraints.NotBlank;
+
+public class TodoRequest {
+
+	@NotBlank(message = "Title can not be null")
+	private String title;
+	private String description;
+	private boolean isCompleted;
+
+}

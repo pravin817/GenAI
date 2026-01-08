@@ -1,0 +1,16 @@
+package com.ptech.todo.dto.response;
+
+import java.time.LocalDateTime;
+
+public class TodoResponse {
+
+	private Long id;
+
+	private String title;
+
+	private String description;
+
+	private boolean isCompleted;
+
+	private LocalDateTime createdAt;
+}

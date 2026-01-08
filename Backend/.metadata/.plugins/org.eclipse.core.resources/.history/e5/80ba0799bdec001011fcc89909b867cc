@@ -1,0 +1,6 @@
+package com.ptech.todo.exception;
+
+
+public class ResourceNotFoundException extends RuntimeException{
+
+}

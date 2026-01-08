@@ -1,0 +1,37 @@
+package com.ptech.todo.mapper;
+
+import com.ptech.todo.dto.request.TodoRequest;
+import com.ptech.todo.dto.response.TodoResponse;
+import com.ptech.todo.entity.Todo;
+
+public class TodoMapper {
+
+	public static Todo mapToEntity(TodoRequest request) {
+		if (request == null) {
+			return null;
+		}
+
+		Todo todo = new Todo();
+		todo.setTitle(request.getTitle());
+		todo.setDescription(request.getDescription());
+		todo.setCompleted(request.isCompleted());
+
+		return todo;
+	}
+	
+	public static TodoResponse mapToResponse(Todo todo) {
+		if (todo = null) {
+			return null;
+		}
+		
+		TodoResponse response = new TodoResponse();
+		response.setId(todo.getId());
+		response.setTitle(todo.getTitle());
+		response.setDescription(todo.getDescription());
+		response.setCompleted(todo.isCompleted());
+		response.setCreatedAt(todo.getCreatedAt());
+		
+		return response;
+		
+	}
+}

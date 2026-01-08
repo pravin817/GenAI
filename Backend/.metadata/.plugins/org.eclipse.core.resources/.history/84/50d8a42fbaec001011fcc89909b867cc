@@ -1,0 +1,61 @@
+package com.ptech.todo.service.impl;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+import com.ptech.todo.dto.request.TodoRequest;
+import com.ptech.todo.dto.response.TodoResponse;
+import com.ptech.todo.entity.Todo;
+import com.ptech.todo.repository.TodoRepository;
+import com.ptech.todo.service.ITodoService;
+
+public class TodoServiceImpl implements ITodoService {
+
+	private final TodoRepository todoRepository;
+
+	public TodoServiceImpl(TodoRepository todoRepositry) {
+		this.todoRepository = todoRepositry;
+	}
+
+	@Override
+	public TodoResponse createTodo(TodoRequest request) {
+		Todo todo = mapToEntity(request);
+		Todo savedTodo = todoRepository.save(todo);
+		return mapToResponse(savedTodo);
+	}
+
+	@Override
+	public List<TodoResponse> getAllTodos() {
+		return todoRepository.findAll().stream().map(this::mapToResponse).collect(Collectors.toList());
+	}
+
+	@Override
+	public TodoResponse getTodoById(Long id) {
+		Todo todo = todoRepository.findById(id)
+				.orElseThrow(() -> ResourceNotFoundException("Todo not found with id:" + id));
+		return mapToResponse(todo);
+	}
+
+	@Override
+	public TodoResponse updateTodo(Long id, TodoRequest request) {
+		Todo todo = todoRepository.findById(id)
+				.orElseThrow(() -> new ResouceNotFoundException("Todo not found with id:" + id));
+
+		todo.setTitle(request.getTitle());
+		todo.setDescription(request.getDescription());
+		todo.setCompleted(request.isCompleted());
+
+		Todo updatedTodo = todoRepository.save(todo);
+		return mapToResponse(updatedTodo);
+	}
+
+	@Override
+	public void deleteTodoById(Long id) {
+		if (!todoRepository.existsById(id)) {
+			throw new ResourceNotFoundException("Cannot delete. Todo not found with id:" + id);
+		}
+
+		return todoRepository.deleteById(id);
+	}
+
+}

@@ -1,0 +1,53 @@
+package com.ptech.todo.service.impl;
+
+import java.util.List;
+
+import com.ptech.todo.dto.request.TodoRequest;
+import com.ptech.todo.dto.response.TodoResponse;
+import com.ptech.todo.entity.Todo;
+import com.ptech.todo.repository.TodoRepository;
+import com.ptech.todo.service.ITodoService;
+
+public class TodoServiceImpl implements ITodoService {
+
+	private final TodoRepository todoRepository;
+
+	public TodoServiceImpl(TodoRepository todoRepositry) {
+		this.todoRepository = todoRepositry;
+	}
+
+	@Override
+	public TodoResponse createTodo(TodoRequest todoRequest) {
+		Todo todo = mapToEntity(todoRequest);
+		Todo response = todoRepository.save(todo);
+		
+		return mapToResponse(Todo);
+		
+		return null;
+	}
+
+	@Override
+	public List<TodoResponse> getAllTodos() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public TodoResponse getTodoById(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public TodoResponse updateTodo(Long id, TodoRequest todoRequest) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean deleteTodoById(Long id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+}

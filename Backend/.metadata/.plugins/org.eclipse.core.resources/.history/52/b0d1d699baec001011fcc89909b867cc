@@ -1,0 +1,21 @@
+package com.ptech.todo.mapper;
+
+import com.ptech.todo.dto.request.TodoRequest;
+import com.ptech.todo.entity.Todo;
+
+public class TodoMapper {
+
+	// Convert Request DTO to Entity (For POST/PUT)
+	public Todo mapToEntity(TodoRequest request) {
+		if (request == null) {
+			return null;
+		}
+
+		Todo todo = new Todo();
+		todo.setTitle(request.getTitle());
+		todo.setDescription(request.getDescription());
+		todo.setCompleted(request.isCompleted());
+
+		return todo;
+	}
+}

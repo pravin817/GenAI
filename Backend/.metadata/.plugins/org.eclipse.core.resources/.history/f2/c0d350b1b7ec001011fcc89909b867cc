@@ -1,0 +1,17 @@
+package com.ptech.todo.service;
+
+import com.ptech.todo.dto.request.TodoRequest;
+
+public interface ITodoService {
+
+	TodoResponse createTodo(TodoRequest todoRequest);
+
+	List<TodoResponse> getAllTodos();
+
+	TodoResponse getTodoById(Long id);
+
+	TodoResponse updateTodo(Long id, TodoRequest todoRequest);
+
+	boolean deleteTodoById(Long id);
+
+}

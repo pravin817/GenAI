@@ -1,0 +1,18 @@
+package com.ptech.todo.controller;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.ptech.todo.service.ITodoService;
+import com.ptech.todo.service.impl.TodoServiceImpl;
+
+@RequestMapping("/api/v1/todos")
+@RestController
+public class TodoController {
+
+	private final ITodoService todoService;
+	
+	public TodoController(ITodoService todoService) {
+		this.todoService= todoService;
+	}
+}

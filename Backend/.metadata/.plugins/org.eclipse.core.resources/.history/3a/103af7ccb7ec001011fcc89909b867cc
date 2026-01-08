@@ -1,0 +1,7 @@
+package com.ptech.todo.service.impl;
+
+import com.ptech.todo.service.ITodoService;
+
+public class TodoService implements ITodoService{
+
+}
