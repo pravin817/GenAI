@@ -39,15 +39,13 @@ public class TodoServiceImpl implements ITodoService {
 
 	@Override
 	public TodoResponse getTodoById(Long id) {
-		Todo todo = todoRepository.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("Todo not found with id:" + id));
+		Todo todo = findTodoOrThrow(id);
 		return TodoMapper.mapToResponse(todo);
 	}
 
 	@Override
 	public TodoResponse updateTodo(Long id, TodoRequest request) {
-		Todo todo = todoRepository.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("Todo not found with id:" + id));
+		Todo todo = findTodoOrThrow(id);
 
 		todo.setTitle(request.getTitle());
 		todo.setDescription(request.getDescription());
@@ -64,6 +62,11 @@ public class TodoServiceImpl implements ITodoService {
 		}
 
 		todoRepository.deleteById(id);
+	}
+
+	private Todo findTodoOrThrow(Long id) {
+		return todoRepository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Todo not found with id:" + id));
 	}
 
 }

@@ -33,7 +33,6 @@ public class TodoController {
 	public ResponseEntity<TodoResponse> createTodo(@Valid @RequestBody TodoRequest request) {
 		TodoResponse createdTodo = todoService.createTodo(request);
 		return new ResponseEntity<TodoResponse>(createdTodo, HttpStatus.CREATED);
-
 	}
 
 	@GetMapping
